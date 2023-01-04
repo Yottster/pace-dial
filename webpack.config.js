@@ -1,14 +1,16 @@
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
-const CleanPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
     devServer: {
-        contentBase: './dist'
+        static: {
+            directory: path.join(__dirname, 'dist'),
+        }
     },
     plugins: [
-        new CleanPlugin(['dist']),
+        new CleanWebpackPlugin(),
         new HtmlPlugin({
             title: 'Pace-Dial',
             template: './src/index.tpl.html'
